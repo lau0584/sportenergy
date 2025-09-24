@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sport Energy | Accesorios Deportivos</title>
+  <meta name="description" content="Tienda de accesorios deportivos: guantes, botellas, bandas, mochilas, rodilleras y más. Envíos a todo el país." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1220;
+      --card:#161a2b;
+      --muted:#8a90a6;
+      --text:#e8ecf7;
+      --accent:#276bc3;
+      --accent-2:#4ca7dc;
+      --danger:#ff5a7a;
+      --ring: rgba(39,195,168,.35);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,#0e1120 0%,#0a0d18 100%);color:var(--text);font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+
+    /* Layout */
+    .container{width:min(1200px,92%);margin:auto}
+    header{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter: blur(10px);
+      background:rgba(15,18,32,.6);
+      border-bottom:1px solid rgba(255,255,255,.06)
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:14px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.3px}
+    .brand .logo{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#0b1212;font-weight:800}
+    .nav-links{display:flex;gap:22px;align-items:center}
+    .nav-links a{opacity:.9}
+    .nav-cta{display:flex;gap:10px}
+    .btn{
+      padding:10px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.1);
+      background:linear-gradient(180deg,#1b2036 0%,#151a2f 100%);
+      color:var(--text);box-shadow:var(--shadow);transition:.2s ease;cursor:pointer
+    }
+    .btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.2)}
+    .btn-primary{
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:#1c3b36;border:none
+    }
+
+    /* Hero */
+    .hero{
+      display:grid;gap:28px;align-items:center;
+      grid-template-columns: 1.2fr .8fr;
+      padding:44px 0 22px
+    }
+    .hero h1{font-size:clamp(28px,5vw,46px);line-height:1.1;margin:0 0 10px}
+    .hero p{color:var(--muted);margin:0 0 18px}
+    .badges{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0 20px}
+    .badge{font-size:12px;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:#12172a7a}
+    .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+    .hero-media{
+      position:relative;border-radius:24px;overflow:hidden;box-shadow:var(--shadow);
+      outline:1px solid rgba(255,255,255,.08)
+    }
+    .hero-media img{height:100%;object-fit:cover;aspect-ratio:1/1}
+
+    /* Categories */
+    .section{padding:36px 0}
+    .section h2{font-size:clamp(22px,4vw,32px);margin:0 0 12px}
+    .section p.lead{color:var(--muted);margin:0 0 22px}
+    .grid{
+      display:grid;gap:16px;
+      grid-template-columns: repeat(12, 1fr)
+    }
+    .card{
+      background:linear-gradient(180deg,#171b2f 0%,#12162a 100%);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)
+    }
+    .cat{grid-column: span 4;display:grid;grid-template-rows:auto 1fr}
+    .cat img{aspect-ratio:16/10;object-fit:cover}
+    .cat .content{padding:16px}
+    .chip{font-size:12px;background:#0e1427;border:1px solid rgba(255,255,255,.06);padding:6px 10px;border-radius:999px;display:inline-block;margin-bottom:8px}
+    .cat h3{margin:6px 0 6px;font-size:18px}
+    .cat p{margin:0;color:var(--muted)}
+
+    /* Products */
+    .product{grid-column: span 3;display:flex;flex-direction:column}
+    .product .thumb{position:relative}
+    .product .thumb img{aspect-ratio:1/1;object-fit:cover}
+    .price{display:flex;align-items:center;gap:8px;margin-top:8px}
+    .price .now{font-weight:700}
+    .price .before{color:var(--muted);text-decoration:line-through;font-size:.9rem}
+    .actions{margin-top:auto;display:flex;gap:8px}
+    .actions .btn{flex:1}
+
+    /* Banner */
+    .banner{
+      background:radial-gradient(1200px 500px at 10% 0%, rgba(39,195,168,.2), transparent 60%), #12162a;
+      border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:24px;display:grid;gap:16px;grid-template-columns: 1fr .9fr;align-items:center
+    }
+    .banner img{border-radius:18px;aspect-ratio:16/10;object-fit:cover;outline:1px solid rgba(255,255,255,.08)}
+
+    /* Testimonials */
+    .testi{grid-column: span 4;padding:18px}
+    .testi .who{display:flex;gap:12px;align-items:center;margin-top:10px}
+    .avatar{width:44px;height:44px;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,.12)}
+
+    /* Newsletter */
+    .newsletter{
+      display:grid;gap:14px;grid-template-columns: 1.1fr .9fr;align-items:center;
+      background:linear-gradient(135deg,#141a30,#101527);
+      border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:20px
+    }
+    form{display:flex;gap:10px;flex-wrap:wrap}
+    input[type="email"]{
+      flex:1;min-width:220px;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);
+      background:#0f1427;color:var(--text);outline:2px solid transparent
+    }
+    input[type="email"]:focus{outline-color:var(--ring)}
+    footer{padding:28px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.06);margin-top:28px}
+    .footer-grid{display:grid;gap:16px;grid-template-columns:2fr 1fr 1fr 1fr}
+    .foot-title{color:var(--text);font-weight:600;margin-bottom:10px}
+    .small{font-size:.9rem;color:var(--muted)}
+    .copyright{margin-top:14px;font-size:.85rem;text-align:center;color:#98a0b8}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero{grid-template-columns:1fr;gap:18px}
+      .banner{grid-template-columns:1fr}
+      .newsletter{grid-template-columns:1fr}
+      .cat{grid-column: span 6}
+      .product{grid-column: span 6}
+      .testi{grid-column: span 6}
+      .footer-grid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 620px){
+      .nav-links{display:none}
+      .cat,.product,.testi{grid-column: span 12}
+      .brand .logo{width:30px;height:30px}
+      .btn{padding:9px 14px}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#">
+        <span class="logo"><img src="Logo.png"></span>
+        <span>Sport<span style="color:var(--accent)">Energy</span></span>
+      </a>
+      <nav class="nav-links">
+        <a href="#categorias">Categorías</a>
+        <a href="#productos">Productos</a>
+        <a href="#ofertas">Ofertas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn" href="#">Ingresar</a>
+        <a class="btn btn-primary" href="#">Carrito (0)</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="container hero">
+    <div>
+      <div class="badges">
+        <span class="badge">NUEVA TEMPORADA</span>
+        <span class="badge">Envíos a todo el país</span>
+        <span class="badge">Garantía 30 días</span>
+      </div>
+      <h1>Supera tus limites con Sport Energy</h1>
+      <p>Aqui tu vas a encontrar todo para entrenar de una forma comoda y sin complicaciones: Termos, straps, licras, camisas, pantalonetas y mucho mas</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#productos">Comprar ahora</a>
+        <a class="btn" href="#categorias">Ver categorías</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <img src="deportista.png" alt="Deportista con accesorios de entrenamiento" loading="lazy">
+  </section>
+
+  <!-- Categorías -->
+  <section id="categorias" class="section container">
+    <h2>Categorías destacadas</h2>
+    <p class="lead">Elige tu disciplina y equipa tu entrenamiento.</p>
+
+    <div class="grid">
+      <article class="card cat">
+        <img src="munecas.png" alt="Guantes deportivos">
+        <div class="content">
+          <span class="chip">Fuerza</span>
+          <h3>Guantes y muñequeras</h3>
+          <p>Mejor agarre y protección en barras y pesas.</p>
+        </div>
+      </article>
+
+      <article class="card cat">
+        <img src="Botell.png" alt="Botellas deportivas">
+        <div class="content">
+          <span class="chip">Hidratación</span>
+          <h3>Botellas & Shakers</h3>
+          <p>Mantén tu rendimiento con hidratación fría por horas.</p>
+        </div>
+      </article>
+
+      <article class="card cat">
+        <img src="bandas.jpg" alt="Bandas de resistencia">
+        <div class="content">
+          <span class="chip">Funcional</span>
+          <h3>Bandas & Cuerdas</h3>
+          <p>Entrena en casa o al aire libre con resistencia progresiva.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Banner Oferta -->
+  <section id="ofertas" class="container section">
+    <div class="banner">
+      <div>
+        <h2>Semana SportFit: -30% en accesorios seleccionados</h2>
+        <p class="small">Aprovecha los descuentos en botellas térmicas, bandas premium y rodilleras de compresión. No pierdas esta gran aportunidad</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#productos">Ver productos</a>
+          <a class="btn" href="#">Cupones</a>
+        </div>
+      </div>
+      <img src="accesorios.jpg" alt="Accesorios en oferta">
+    </div>
+  </section>
+
+  <!-- Productos -->
+  <section id="productos" class="section container">
+    <h2>Algunos de nuestros productos</h2>
+    <p class="lead">Calidad probada por deportistas de alto rendimiento.</p>
+
+    <div class="grid">
+      <!-- Producto 1 -->
+      <article class="card product">
+        <div class="thumb">
+          <img src="Guantess.png" alt="Guantes de entrenamiento">
+        </div>
+        <div style="padding:16px">
+          <h3>Guantes Gym</h3>
+          <p class="small">Agarre antideslizante para ejercicios y ventilación 360°.</p>
+          <div class="price">
+            <span class="now">$79.900</span>
+            <span class="before">$99.900</span>
+          </div>
+          <div class="actions">
+            <a class="btn" href="#">Detalles</a>
+            <a class="btn btn-primary" href="#">Agregar</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Producto 2 -->
+      <article class="card product">
+        <div class="thumb">
+          <img src="Termos.jpg" alt="Botella térmica deportiva">
+        </div>
+        <div style="padding:16px">
+          <h3>Botella Térmica 1L</h3>
+          <p class="small">Depende de el tipo de termo, pero se mantiene la temperatura</p>
+          <div class="price">
+            <span class="now">$64.900</span>
+            <span class="before">$84.900</span>
+          </div>
+          <div class="actions">
+            <a class="btn" href="#">Detalles</a>
+            <a class="btn btn-primary" href="#">Agregar</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Producto 3 -->
+      <article class="card product">
+        <div class="thumb">
+          <img src="bandas.jpg" alt="Bandas elásticas de resistencia">
+        </div>
+        <div style="padding:16px">
+          <h3>Bandas PowerSet</h3>
+          <p class="small">Set 5 resistencias: desde 5 lb hasta 50 lb. El precio depende de la resistencia de la banda</p>
+          <div class="price">
+            <span class="now">$59.900</span>
+            <span class="before">$74.900</span>
+          </div>
+          <div class="actions">
+            <a class="btn" href="#">Detalles</a>
+            <a class="btn btn-primary" href="#">Agregar</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Producto 4 -->
+      <article class="card product">
+        <div class="thumb">
+          <img src="rrodillera.jpg" alt="Rodilleras de compresión">
+        </div>
+        <div style="padding:16px">
+          <h3>Rodilleras de Compresion</h3>
+          <p class="small">Compresión graduada, soporte para running.</p>
+          <div class="price">
+            <span class="now">$69.900</span>
+            <span class="before">$79.900</span>
+          </div>
+          <div class="actions">
+            <a class="btn" href="#">Detalles</a>
+            <a class="btn btn-primary" href="#">Agregar</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Testimonios -->
+  <section class="section container">
+    <h2>Lo que dicen nuestros clientes</h2>
+    <div class="grid">
+      <article class="card testi">
+        <p>“Las bandas de resistencia son perfectas para entrenar en casa. Buena resistencia y agarres cómodos. Tienen una muy buena calidad son lo mejor lo recomiendo”</p>
+        <div class="who">
+          <span class="avatar"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop" alt="Cliente 1"></span>
+          <div>
+            <strong>Mariana G.</strong>
+            <div class="small">Cross-training</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card testi">
+        <p>“La botella mantiene el agua fría todo el día y la termica mantiene caliente todo. Cero fugas y tapa con seguro no se desperdicia el agua: 10/10.”</p>
+        <div class="who">
+          <span class="avatar"><img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=600&auto=format&fit=crop" alt="Cliente 2"></span>
+          <div>
+            <strong>Juan P.</strong>
+            <div class="small">Running</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card testi">
+        <p>“Los guantes me salvaron las manos cuando hacia ejercicio, me ayudo mucho en el agarre. Excelente relación calidad/precio.”</p>
+        <div class="who">
+          <span class="avatar"><img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=600&auto=format&fit=crop" alt="Cliente 3"></span>
+          <div>
+            <strong>Daniel R.</strong>
+            <div class="small">Gimnasio</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Newsletter / Contacto -->
+  <section id="contacto" class="container section">
+    <div class="newsletter">
+      <div>
+        <h2>Únete y recibe 10% OFF</h2>
+        <p class="small">Suscríbete para recibir ofertas, lanzamientos y tips de entrenamiento.</p>
+      </div>
+      <form onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!');">
+        <input type="email" placeholder="Tu correo electrónico" required>
+        <button class="btn btn-primary" type="submit">Suscribirme</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="brand"><span class="logo"><img src="Logo.png"></span><span>Sport<span style="color:var(--accent)">Energy</span></span></div>
+        <p class="small" style="margin-top:10px">Accesorios deportivos para cada meta. Calidad, diseño y envíos rápidos.</p>
+      </div>
+      <div>
+        <div class="foot-title">Tienda</div>
+        <a class="small" href="#categorias">Categorías</a><br>
+        <a class="small" href="#productos">Productos</a><br>
+        <a class="small" href="#ofertas">Ofertas</a>
+      </div>
+      <div>
+        <div class="foot-title">Soporte</div>
+        <a class="small" href="#">Preguntas frecuentes</a><br>
+        <a class="small" href="#">Cambios y devoluciones</a><br>
+        <a class="small" href="#contacto">Contacto</a>
+      </div>
+      <div>
+        <div class="foot-title">Legal</div>
+        <a class="small" href="#">Términos</a><br>
+        <a class="small" href="#">Privacidad</a>
+      </div>
+    </div>
+    <div class="container copyright">© <span id="year"></span> Sport Energy. Todos los derechos son reservados.</div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
